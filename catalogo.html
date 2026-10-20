@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo | SONORA</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            linen: '#F4F1EA',
+            charcoal: '#1A1A1A',
+            primary: '#8C6D53',
+            foreground: '#1F1F1F',
+            'muted-foreground': '#666666',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .container-full {
+      width: 100%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      max-width: 1536px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-foreground font-sans antialiased overflow-x-hidden">
+
+  <!-- Cabeçalho / Navegação -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 px-6 text-white bg-charcoal/85 backdrop-blur-md">
+    <div class="container-full flex justify-between items-center">
+      <a href="index.html" class="font-serif text-2xl tracking-widest uppercase">
+        SONORA
+      </a>
+
+      <nav class="hidden md:flex gap-8 text-xs uppercase tracking-widest">
+        <a href="index.html" class="hover:opacity-70 transition">Início</a>
+        <a href="catalogo.html" class="text-primary font-semibold">Catálogo</a>
+        <a href="historia.html" class="hover:opacity-70 transition">História</a>
+        <a href="index.html#contato" class="hover:opacity-70 transition">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO DO CATÁLOGO -->
+  <section class="relative pt-40 pb-16 md:pt-48 md:pb-24 bg-charcoal text-white">
+    <div class="container-full text-center fade-in-section is-visible">
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase text-primary mb-4">
+        Acervo Completo
+      </p>
+      <h1 class="font-serif text-4xl md:text-6xl mb-6">
+        Explore nosso <span class="italic font-normal">catálogo</span>
+      </h1>
+      <p class="text-white/70 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+        Todos os discos, equipamentos de áudio, acessórios e itens colecionáveis disponíveis na Sonora.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE FILTROS E PRODUTOS -->
+  <section class="py-16 md:py-24 bg-linen">
+    <div class="container-full">
+
+      <!-- Botões de Filtro -->
+      <div id="filter-buttons" class="flex flex-wrap justify-center gap-3 mb-12">
+        <button 
+          data-filter="all" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-charcoal text-white font-medium"
+        >
+          Todos
+        </button>
+        <button 
+          data-filter="Vinil" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-white text-foreground hover:bg-charcoal hover:text-white border border-black/10"
+        >
+          Vinil
+        </button>
+        <button 
+          data-filter="CDs" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-white text-foreground hover:bg-charcoal hover:text-white border border-black/10"
+        >
+          CDs
+        </button>
+        <button 
+          data-filter="Equipamentos de Áudio" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-white text-foreground hover:bg-charcoal hover:text-white border border-black/10"
+        >
+          Áudio
+        </button>
+        <button 
+          data-filter="Fones de Ouvido" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-white text-foreground hover:bg-charcoal hover:text-white border border-black/10"
+        >
+          Fones
+        </button>
+        <button 
+          data-filter="Colecionáveis" 
+          class="filter-btn px-6 py-3 text-xs uppercase tracking-[0.15em] transition bg-white text-foreground hover:bg-charcoal hover:text-white border border-black/10"
+        >
+          Colecionáveis
+        </button>
+      </div>
+
+      <!-- Grade de Produtos Completa -->
+      <div 
+        id="catalog-grid" 
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
+        <!-- Renderizado dinamicamente pelo JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-charcoal text-white py-12 px-6 border-t border-white/10">
+    <div class="container-full flex flex-col md:flex-row justify-between items-center gap-6">
+      <a href="index.html" class="font-serif text-xl tracking-widest uppercase">
+        SONORA
+      </a>
+      <p class="text-xs text-white/50 tracking-wider">
+        © 2026 Sonora. Todos os direitos reservados.
+      </p>
+      <div class="flex gap-6 text-xs uppercase tracking-widest text-white/70">
+        <a href="index.html" class="hover:text-white transition">Início</a>
+        <a href="historia.html" class="hover:text-white transition">História</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lógica e Dados -->
+  <script>
+    lucide.createIcons();
+
+    // Base de dados completa englobando todas as coleções
+    const catalogProducts = [
+      {
+        id: 'c1',
+        name: 'Álbum Clássico em Vinil 180g',
+        price: 'R$ 149,90',
+        category: 'Vinil',
+        image: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=600&q=80'
+      },
+      {
+        id: 'c2',
+        name: 'Edição Limitada Rock Anos 80 (Vinil Duplo)',
+        price: 'R$ 219,90',
+        category: 'Vinil',
+        image: 'imagens/rock.jpg'
+      },
+      {
+        id: 'c3',
+        name: 'CD - Remasterizado Edição Especial',
+        price: 'R$ 89,90',
+        category: 'CDs',
+        image: 'imagens/cd2.jpg'
+      },
+      {
+        id: 'c4',
+        name: 'CD Box Set - Coletânea de Jazz',
+        price: 'R$ 129,90',
+        category: 'CDs',
+        image: 'imagens/box.jpg'
+      },
+      {
+        id: 'c5',
+        name: 'Toca-Discos Hi-Fi com Pré-amplificador',
+        price: 'R$ 1.899,90',
+        category: 'Equipamentos de Áudio',
+        image: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&q=80'
+      },
+      {
+        id: 'c6',
+        name: 'Amplificador Valvulado Estéreo',
+        price: 'R$ 2.499,90',
+        category: 'Equipamentos de Áudio',
+        image: 'imagens/som.jpg'
+      },
+      {
+        id: 'c7',
+        name: 'Fone de Ouvido Over-Ear Hi-Res',
+        price: 'R$ 299,90',
+        category: 'Fones de Ouvido',
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80'
+      },
+      {
+        id: 'c8',
+        name: 'Fone de Ouvido Studio Monitor Pro',
+        price: 'R$ 450,00',
+        category: 'Fones de Ouvido',
+        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=80'
+      },
+      {
+        id: 'c9',
+        name: 'Guitarra Decorativa Miniatura Colecionável',
+        price: 'R$ 199,90',
+        category: 'Colecionáveis',
+        image: 'imagens/guitarra.jpg'
+      },
+      {
+        id: 'c10',
+        name: 'SONORA EXPERIENCE - 2026',
+        price: 'R$ 179,90',
+        category: 'Colecionáveis',
+        image: 'imagens/amoeba2.jpg'
+      }
+    ];
+
+    const grid = document.getElementById('catalog-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // Função para renderizar os cards
+    function renderProducts(items) {
+      grid.innerHTML = '';
+      
+      if (items.length === 0) {
+        grid.innerHTML = `<p class="col-span-full text-center text-muted-foreground py-12">Nenhum produto encontrado nesta categoria.</p>`;
+        return;
+      }
+
+      items.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'group cursor-pointer bg-white p-4 shadow-sm hover:shadow-md transition duration-300';
+        card.innerHTML = `
+          <div class="relative aspect-[3/4] overflow-hidden mb-4 bg-linen">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">${product.category}</p>
+          <h3 class="font-serif text-lg text-foreground group-hover:text-primary transition-colors">${product.name}</h3>
+          <p class="text-sm font-medium mt-1">${product.price}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Inicializar renderizando todos
+    renderProducts(catalogProducts);
+
+    // Sistema de Filtros por clique
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Remover classes ativas de todos os botões
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-charcoal', 'text-white', 'font-medium');
+          b.classList.add('bg-white', 'text-foreground', 'hover:bg-charcoal', 'hover:text-white');
+        });
+
+        // Adicionar classes ativas ao botão clicado
+        btn.classList.remove('bg-white', 'text-foreground', 'hover:bg-charcoal', 'hover:text-white');
+        btn.classList.add('bg-charcoal', 'text-white', 'font-medium');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        if (filterValue === 'all') {
+          renderProducts(catalogProducts);
+        } else {
+          const filtered = catalogProducts.filter(p => p.category === filterValue);
+          renderProducts(filtered);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
